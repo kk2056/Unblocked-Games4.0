@@ -1,6 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, useParams, useNavigate } from 'react-router-dom';
-import { Gamepad2, Search, ArrowLeft, Info, Shield, Home, Flame, Star, Zap } from 'lucide-react';
+// Removed conflicting 'Home' import from lucide-react to resolve clash with local 'Home' component.
+// Removed unused 'Info' import.
+import { Gamepad2, Search, ArrowLeft, Shield, Flame, Star, Zap } from 'lucide-react';
 
 // --- TYPES ---
 interface Game {
@@ -13,7 +16,7 @@ interface Game {
 }
 
 declare global {
-  interface Window {
+  interface window {
     adsbygoogle: any[];
   }
 }
