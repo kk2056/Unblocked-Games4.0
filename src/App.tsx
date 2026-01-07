@@ -86,6 +86,21 @@ const GAMES: Game[] = [
       strategies: "Keep your movements subtle. Over-correcting is the number one cause of falling off the track. Focus on the horizon to anticipate turns.",
       whyPopular: "One of the most requested unblocked games for 2026 due to its hypnotic visuals and competitive leaderboards."
     }
+  },
+  {
+    id: 'basket-random',
+    title: 'Basket Random',
+    category: 'Sports',
+    image: 'https://images.crazygames.com/games/basket-random/cover-16x9.png?auto=format,compress&q=75&cs=strip',
+    url: 'https://www.crazygames.com/embed/basket-random',
+    description: 'Score a basket using only one key with variations from different fields and players.',
+    rating: 4.5,
+    plays: '15.8M',
+    richContent: {
+      gameplay: "A wacky one-button basketball game where the physics change every time you score. You might find yourself playing with long arms, on an icy court, or with a heavy ball.",
+      strategies: "Wait for the player's arm to reach the peak height before jumping.",
+      whyPopular: "Hilarious unpredictability makes for high replayability."
+    }
   }
 ];
 
@@ -114,7 +129,7 @@ const AdBanner: React.FC<{ slotId?: string; className?: string }> = ({ slotId = 
                   observer.disconnect();
                 }
               } catch (e) {
-                console.warn("AdSense push deferred.");
+                console.warn("AdSense push safely deferred.");
               }
             }, 600);
           }
@@ -132,7 +147,7 @@ const AdBanner: React.FC<{ slotId?: string; className?: string }> = ({ slotId = 
   return (
     <div className={`flex justify-center w-full ${className}`}>
       <div ref={containerRef} className="bg-gray-950/40 rounded-2xl flex flex-col items-center justify-center min-h-[120px] min-w-[300px] w-full border border-gray-800/50 relative overflow-hidden backdrop-blur-sm shadow-inner">
-        <div className="absolute top-2 text-[8px] text-gray-700 uppercase font-black tracking-[0.2em] pointer-events-none">Sponsored Content Area</div>
+        <div className="absolute top-2 text-[8px] text-gray-700 uppercase font-black tracking-[0.2em] pointer-events-none">Advertisement</div>
         <ins className="adsbygoogle"
              key={`ad-unit-${location.pathname}-${slotId}`}
              style={{ display: 'block', width: '100%', minHeight: '90px' }}
@@ -152,7 +167,7 @@ const Header: React.FC<{ searchTerm: string; setSearchTerm: (s: string) => void 
   <header className="bg-gray-950 border-b border-gray-800 sticky top-0 z-50 py-4 backdrop-blur-xl shadow-2xl">
     <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-5">
       <Link to="/" className="flex items-center gap-3 group">
-        <div className="bg-indigo-600 p-2.5 rounded-2xl group-hover:rotate-12 transition-all shadow-indigo-500/30 shadow-xl group-hover:shadow-indigo-500/50">
+        <div className="bg-indigo-600 p-2.5 rounded-2xl group-hover:rotate-12 transition-all shadow-indigo-500/30 shadow-xl">
           <Gamepad2 className="text-white w-7 h-7" />
         </div>
         <div className="leading-none">
@@ -164,7 +179,7 @@ const Header: React.FC<{ searchTerm: string; setSearchTerm: (s: string) => void 
         <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600" />
         <input 
           type="text" 
-          placeholder="Search 5,000+ school unblocked games..." 
+          placeholder="Search 5,000+ unblocked games..." 
           className="w-full bg-gray-900 border border-gray-700 rounded-2xl py-3.5 pl-14 pr-6 text-sm focus:outline-none focus:ring-4 focus:ring-indigo-500/20 transition-all text-white placeholder:text-gray-600 font-bold"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -202,48 +217,46 @@ const GamePlayer: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <button onClick={() => navigate('/')} className="flex items-center gap-3 px-6 py-3 bg-gray-900 rounded-2xl text-[11px] font-black text-gray-400 mb-8 hover:bg-gray-800 transition-all border border-gray-800 uppercase tracking-widest shadow-lg active:scale-95">
+      <button onClick={() => navigate('/')} className="flex items-center gap-3 px-6 py-3 bg-gray-900 rounded-2xl text-[11px] font-black text-gray-400 mb-8 hover:bg-gray-800 transition-all border border-gray-800 uppercase tracking-widest shadow-lg">
         <ArrowLeft className="w-4 h-4" /> Return to Library
       </button>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
         <div className="lg:col-span-3">
           
-          {/* AD 1: ABOVE GAME */}
-          <AdBanner slotId="game-player-top" className="mb-8" />
+          {/* AD ABOVE GAME AREA */}
+          <AdBanner slotId="game-player-top" className="mb-6" />
 
-          {/* MOBILE TIPS & ORIENTATION */}
-          <div className="text-center text-white bg-purple-900/90 p-5 rounded-3xl mb-8 max-w-2xl mx-auto shadow-2xl border border-purple-500/30 flex flex-col md:flex-row items-center justify-center gap-4">
-            <Smartphone className="w-8 h-8 text-purple-300 animate-bounce" />
-            <p className="text-sm font-black tracking-tight uppercase">
-              Pro Tip: Rotate to Landscape Mode! Best experience on <span className="text-yellow-400 italic">iPhone, Android & Chromebook.</span>
-            </p>
+          {/* TASK 2: MOBILE ADAPTATION TIP */}
+          <div className="text-center text-white bg-purple-800 p-4 rounded-lg mb-6 max-w-md mx-auto shadow-md font-bold">
+            Tip: Rotate to landscape for better mobile experience! Perfect on phone or Chromebook.
           </div>
 
-          {/* LARGE FULLSCREEN BUTTON */}
+          {/* TASK 3: OPTIMIZED FULLSCREEN BUTTON */}
           <button 
             onClick={toggleFullscreen} 
-            className="block mx-auto bg-green-600 hover:bg-green-700 text-white font-black py-5 px-14 rounded-[2rem] text-2xl mb-8 shadow-[0_15px_30px_-5px_rgba(22,163,74,0.5)] transition-all active:scale-95 transform hover:scale-105 flex items-center justify-center gap-5 uppercase tracking-tighter"
+            className="block mx-auto bg-green-600 hover:bg-green-700 text-white font-black py-4 px-8 rounded-xl text-xl mb-6 shadow-[0_10px_20px_-5px_rgba(22,163,74,0.4)] transition-all active:scale-95 transform hover:scale-105 flex items-center justify-center gap-3 uppercase tracking-tight"
           >
-            <Maximize className="w-8 h-8" />
-            Launch Full Screen (Press F)
+            <Maximize className="w-6 h-6" />
+            Play Full Screen (Press F - Ultimate Experience!)
           </button>
           
-          <div className="text-center text-white bg-indigo-900/40 p-5 rounded-3xl mb-10 max-w-2xl mx-auto shadow-xl border border-indigo-500/20 text-xs font-black uppercase tracking-[0.2em]">
-            Ultimate "Zero Lag" Gaming Node - Chromebook Optimized
+          {/* TASK 4: FULLSCREEN TIP TEXT */}
+          <div className="text-center text-white bg-blue-800 p-4 rounded-lg mb-6 max-w-lg mx-auto shadow-md border border-blue-600 font-bold italic">
+            Press F for fullscreen - No lag, full immersion on any device!
           </div>
 
-          {/* LOADING INDICATOR */}
-          <div className="text-center text-gray-700 mb-5 animate-pulse text-[10px] font-black uppercase tracking-[0.5em]">
-            Allocating Cloud Assets...
+          {/* LOADING HINT */}
+          <div className="text-center text-gray-700 mb-4 animate-pulse text-[10px] font-black uppercase tracking-[0.4em]">
+            Allocating Node Assets...
           </div>
 
           {/* GAME FRAME CONTAINER */}
-          <div className="relative bg-black rounded-[3rem] overflow-hidden aspect-[16/9] ring-[12px] ring-gray-900 shadow-[0_40px_100px_-20px_rgba(0,0,0,1)]">
+          <div className="relative bg-black rounded-[3rem] overflow-hidden aspect-[16/9] ring-[12px] ring-gray-950 shadow-[0_40px_100px_-20px_rgba(0,0,0,1)]">
             {isLoading && (
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-950 z-10">
-                <div className="w-20 h-20 border-[6px] border-indigo-600 border-t-transparent rounded-full animate-spin mb-8"></div>
-                <p className="text-indigo-400 text-xs font-black tracking-[0.4em] uppercase">Syncing Browser Instance...</p>
+                <div className="w-16 h-16 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mb-6"></div>
+                <p className="text-indigo-400 text-xs font-black tracking-[0.3em] uppercase">Booting Engine...</p>
               </div>
             )}
             <iframe
@@ -256,78 +269,77 @@ const GamePlayer: React.FC = () => {
             />
           </div>
 
-          {/* AD 2: MIDDLE (BELOW GAME) */}
-          <AdBanner slotId="game-player-middle" className="mt-12" />
+          {/* TASK 1: AD BOTTOM (Requested structure) */}
+          <div className="ad-bottom mt-8 text-center mb-10">
+            <AdBanner slotId="game-player-bottom-custom" />
+          </div>
 
-          {/* DETAILED CONTENT AREA (SEO & Value boost) */}
-          <div className="bg-gray-900/50 rounded-[3rem] p-12 border border-gray-800 shadow-3xl mt-16 backdrop-blur-sm">
-            <h1 className="text-5xl font-black text-white mb-8 border-b border-gray-800 pb-8 tracking-tighter uppercase italic">
-              {game.title} <span className="text-indigo-500">Unblocked Portal</span>
+          {/* DETAILED CONTENT AREA (Boost site value/RPM) */}
+          <div className="bg-gray-900/50 rounded-[3rem] p-10 border border-gray-800 shadow-2xl mt-12 backdrop-blur-sm">
+            <h1 className="text-4xl font-black text-white mb-6 border-b border-gray-800 pb-6 tracking-tighter uppercase italic">
+              {game.title} <span className="text-indigo-500">Unblocked 2025/2026</span>
             </h1>
             <div className="prose prose-invert max-w-none text-gray-400">
-              <h2 className="text-2xl text-white font-black mb-6 uppercase flex items-center gap-3">
-                <Globe className="w-7 h-7 text-indigo-400" /> Advanced Game Guide
+              <h2 className="text-xl text-white font-black mb-4 uppercase flex items-center gap-2 tracking-tight">
+                <Globe className="w-5 h-5 text-indigo-400" /> Professional Overview
               </h2>
-              <p className="mb-10 leading-relaxed text-xl font-bold italic opacity-80 border-l-4 border-indigo-600 pl-6">
-                Are you looking for the best <strong>no download unblocked games 2026 school chromebook</strong> edition? {game.title} is a premier example of how modern web technology allows for console-quality gaming directly in your browser without any installation. Our 2025/2026 tech stack ensures that even on a standard school Chromebook, the gameplay is buttery smooth.
+              <p className="mb-8 leading-relaxed text-lg font-medium opacity-90 italic">
+                Experience {game.title} as never before. Our platform provides high-performance access to <strong>no download unblocked games 2026 school chromebook</strong> optimized hubs. Whether you're in a library or on a commute, our zero-installation standard ensures you're always one click away from the action.
               </p>
               
-              <div className="grid md:grid-cols-2 gap-10 mb-12">
-                <div className="bg-gray-950/60 p-10 rounded-[2.5rem] border border-gray-800/50 hover:border-indigo-500/30 transition-all shadow-inner">
-                  <h3 className="text-indigo-400 font-black mb-5 flex items-center gap-3 uppercase tracking-widest text-xs">
-                    <Flame className="w-6 h-6" /> Game Mechanics 2026
+              <div className="grid md:grid-cols-2 gap-8 mb-10">
+                <div className="bg-gray-850/40 p-8 rounded-3xl border border-gray-700/30">
+                  <h3 className="text-indigo-400 font-black mb-4 flex items-center gap-2 uppercase tracking-widest text-xs">
+                    <Flame className="w-5 h-5" /> Game Mechanics
                   </h3>
-                  <p className="text-sm leading-loose font-medium">{game.richContent?.gameplay}</p>
+                  <p className="text-sm leading-relaxed">{game.richContent?.gameplay}</p>
                 </div>
-                <div className="bg-gray-950/60 p-10 rounded-[2.5rem] border border-gray-800/50 hover:border-indigo-500/30 transition-all shadow-inner">
-                  <h3 className="text-indigo-400 font-black mb-5 flex items-center gap-3 uppercase tracking-widest text-xs">
-                    <Check className="w-6 h-6" /> Competitive Strategy
+                <div className="bg-gray-850/40 p-8 rounded-3xl border border-gray-700/30">
+                  <h3 className="text-indigo-400 font-black mb-4 flex items-center gap-2 uppercase tracking-widest text-xs">
+                    <Check className="w-5 h-5" /> Competitive Tips
                   </h3>
-                  <p className="text-sm leading-loose font-medium">{game.richContent?.strategies}</p>
+                  <p className="text-sm leading-relaxed">{game.richContent?.strategies}</p>
                 </div>
               </div>
 
-              <div className="bg-indigo-950/20 p-10 rounded-[2.5rem] border border-indigo-900/30 mb-10">
-                <h3 className="text-white font-black mb-5 uppercase text-base italic flex items-center gap-3">
-                  <Cpu className="w-6 h-6 text-indigo-500" /> Chromebook Optimization
+              <div className="bg-gray-950/50 p-8 rounded-3xl border border-gray-800 mb-8">
+                <h3 className="text-white font-black mb-4 uppercase text-sm italic flex items-center gap-2">
+                  <ShieldCheck className="w-5 h-5 text-indigo-500" /> Security & Accessibility
                 </h3>
-                <p className="text-sm text-gray-400 leading-relaxed font-bold">
-                  When playing <strong>no download unblocked games 2026 school chromebook</strong> apps, CPU management is vital. We’ve configured our site to minimize background tasks, giving the maximum possible resources to the game engine. This means higher FPS and lower latency, which is critical for rhythm and action games.
+                <p className="text-sm text-gray-500 leading-relaxed font-bold">
+                  Searching for <strong>no download unblocked games 2026 school chromebook</strong> access can be difficult. Our cloud architecture bypasses filters safely while maintaining a strictly "No Installation" policy, protecting your device from local storage bloat and potential security risks.
                 </p>
               </div>
             </div>
           </div>
-
-          {/* AD 3: BOTTOM (END OF CONTENT) */}
-          <AdBanner slotId="game-player-bottom" className="mt-16" />
           
           {/* INTERLINKING GRID */}
-          <div className="mt-16 p-12 bg-gray-950 rounded-[4rem] border border-gray-800 border-dashed">
-            <h3 className="text-white font-black mb-10 text-center uppercase tracking-[0.5em] text-[10px] opacity-40">Network Global Links</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-[10px] font-black uppercase tracking-tighter">
-              <a href="https://snakegame.cfd" target="_blank" className="text-gray-500 hover:text-indigo-400 transition-all bg-gray-900/20 p-5 rounded-3xl text-center border border-gray-800 hover:scale-105">Snake 2026</a>
-              <a href="https://slope2025.online" target="_blank" className="text-gray-500 hover:text-indigo-400 transition-all bg-gray-900/20 p-5 rounded-3xl text-center border border-gray-800 hover:scale-105">Slope 2025</a>
-              <a href="https://retrobowl2025.online" target="_blank" className="text-gray-500 hover:text-indigo-400 transition-all bg-gray-900/20 p-5 rounded-3xl text-center border border-gray-800 hover:scale-105">Retro Bowl Pro</a>
-              <a href="https://1v1lol2025.online" target="_blank" className="text-gray-500 hover:text-indigo-400 transition-all bg-gray-900/20 p-5 rounded-3xl text-center border border-gray-800 hover:scale-105">1v1.LOL Global</a>
+          <div className="mt-12 p-10 bg-gray-950 rounded-[3rem] border border-gray-800 border-dashed">
+            <h3 className="text-white font-black mb-8 text-center uppercase tracking-[0.4em] text-[10px] opacity-40">Network Node Connectivity</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-[9px] font-black uppercase tracking-tighter">
+              <a href="https://snakegame.cfd" target="_blank" className="text-gray-500 hover:text-indigo-400 transition-all bg-gray-900/20 p-4 rounded-2xl text-center border border-gray-800">Snake 2026</a>
+              <a href="https://slope2025.online" target="_blank" className="text-gray-500 hover:text-indigo-400 transition-all bg-gray-900/20 p-4 rounded-2xl text-center border border-gray-800">Slope 2025</a>
+              <a href="https://retrobowl2025.online" target="_blank" className="text-gray-500 hover:text-indigo-400 transition-all bg-gray-900/20 p-4 rounded-2xl text-center border border-gray-800">Retro Bowl</a>
+              <a href="https://1v1lol2025.online" target="_blank" className="text-gray-500 hover:text-indigo-400 transition-all bg-gray-900/20 p-4 rounded-2xl text-center border border-gray-800">1v1.LOL Mobile</a>
             </div>
           </div>
         </div>
 
         {/* SIDEBAR */}
         <div className="lg:col-span-1 space-y-10">
-          <div className="bg-gray-900/80 border border-gray-800 rounded-[2.5rem] p-8 shadow-3xl backdrop-blur-md">
-            <h3 className="text-white font-black mb-8 flex items-center gap-3 border-b border-gray-800 pb-5 text-[11px] uppercase tracking-[0.4em]">
-              <Zap className="w-5 h-5 text-yellow-500" /> Hot Games
+          <div className="bg-gray-900 border border-gray-800 rounded-[2rem] p-6 shadow-3xl backdrop-blur-md">
+            <h3 className="text-white font-black mb-6 flex items-center gap-2 border-b border-gray-800 pb-4 text-[11px] uppercase tracking-[0.3em]">
+              <Zap className="w-4 h-4 text-yellow-500" /> Trending
             </h3>
-            <div className="space-y-8">
+            <div className="space-y-6">
               {GAMES.filter(g => g.id !== id).map(sg => (
-                <Link key={sg.id} to={`/game/${sg.id}`} className="flex gap-5 group">
-                  <div className="w-24 h-16 overflow-hidden rounded-2xl shrink-0 border border-gray-800 group-hover:border-indigo-500 transition-all shadow-xl">
-                    <img src={sg.image} className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-700" alt="" />
+                <Link key={sg.id} to={`/game/${sg.id}`} className="flex gap-4 group">
+                  <div className="w-20 h-14 overflow-hidden rounded-2xl shrink-0 border border-gray-800 group-hover:border-indigo-500 transition-all shadow-md">
+                    <img src={sg.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="" />
                   </div>
                   <div className="flex flex-col justify-center">
-                    <h4 className="text-white text-[12px] font-black line-clamp-1 group-hover:text-indigo-400 transition-colors uppercase italic tracking-tighter">{sg.title}</h4>
-                    <p className="text-[9px] text-gray-500 uppercase font-black tracking-tighter mt-1.5 opacity-60">{sg.category}</p>
+                    <h4 className="text-white text-[11px] font-black line-clamp-1 group-hover:text-indigo-400 transition-colors uppercase italic">{sg.title}</h4>
+                    <p className="text-[9px] text-gray-500 uppercase font-black tracking-tighter mt-1">{sg.category}</p>
                   </div>
                 </Link>
               ))}
@@ -342,23 +354,23 @@ const GamePlayer: React.FC = () => {
 
 const GameCard: React.FC<{ game: Game }> = ({ game }) => (
   <Link to={`/game/${game.id}`} className="block group">
-    <div className="bg-gray-900 rounded-[2.5rem] overflow-hidden border border-gray-800 hover:border-indigo-500 transition-all duration-700 hover:-translate-y-4 hover:shadow-[0_30px_60px_-20px_rgba(79,70,229,0.6)]">
+    <div className="bg-gray-900 rounded-[2rem] overflow-hidden border border-gray-800 hover:border-indigo-500 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_25px_50px_-15px_rgba(79,70,229,0.5)]">
       <div className="relative aspect-video overflow-hidden">
-        <img src={game.image} alt={game.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
-        <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-md">
-          <div className="bg-indigo-600 rounded-full p-8 transform scale-50 group-hover:scale-100 transition-all duration-500 shadow-indigo-500/60 shadow-3xl">
-            <Play className="text-white w-10 h-10 fill-current" />
+        <img src={game.image} alt={game.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">
+          <div className="bg-indigo-600 rounded-full p-6 transform scale-50 group-hover:scale-100 transition-all duration-300 shadow-indigo-500/50 shadow-2xl">
+            <Play className="text-white w-8 h-8 fill-current" />
           </div>
         </div>
       </div>
-      <div className="p-8">
-        <div className="flex justify-between items-start mb-3">
-          <h3 className="text-white font-black text-base group-hover:text-indigo-400 transition-colors uppercase tracking-tighter italic">{game.title}</h3>
-          <span className="bg-indigo-600/20 text-indigo-400 text-[9px] font-black px-3 py-1.5 rounded-xl uppercase tracking-widest">HOT</span>
+      <div className="p-6">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="text-white font-black text-sm group-hover:text-indigo-400 transition-colors uppercase tracking-tighter italic">{game.title}</h3>
+          <span className="bg-indigo-600/20 text-indigo-400 text-[8px] font-black px-2 py-1 rounded-lg uppercase tracking-widest leading-none">HOT</span>
         </div>
-        <div className="flex items-center gap-4 text-[11px] text-gray-600 font-black uppercase">
-          <span className="flex items-center gap-1.5 text-yellow-600"><Flame className="w-4 h-4" /> {game.rating}</span>
-          <span className="opacity-40">{game.plays} Active</span>
+        <div className="flex items-center gap-3 text-[10px] text-gray-600 font-black uppercase">
+          <span className="flex items-center gap-1 text-yellow-600"><Flame className="w-3 h-3" /> {game.rating}</span>
+          <span className="opacity-50">{game.plays} Active</span>
         </div>
       </div>
     </div>
@@ -368,68 +380,61 @@ const GameCard: React.FC<{ game: Game }> = ({ game }) => (
 const Home: React.FC<{ searchTerm: string }> = ({ searchTerm }) => {
   const filteredGames = GAMES.filter(g => g.title.toLowerCase().includes(searchTerm.toLowerCase()));
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="mb-24 text-center">
-        <h2 className="text-7xl md:text-[10rem] font-black text-white mb-8 tracking-tighter uppercase italic leading-[0.8]">
-          ARCADE <span className="text-indigo-500">2026</span>
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-20 text-center">
+        <h2 className="text-7xl md:text-9xl font-black text-white mb-6 tracking-tighter uppercase italic leading-none">
+          UNBLOCKED <span className="text-indigo-500">2025</span>
         </h2>
-        <div className="flex flex-wrap items-center justify-center gap-6 text-gray-600 font-black uppercase tracking-[0.5em] text-[10px] mb-12">
-          <span className="flex items-center gap-3 px-6 py-3 bg-gray-900 rounded-full border border-gray-800 shadow-lg"><Monitor className="w-5 h-5" /> Ultra PC</span>
-          <span className="flex items-center gap-3 px-6 py-3 bg-gray-900 rounded-full border border-gray-800 shadow-lg"><Smartphone className="w-5 h-5" /> Cloud Hub</span>
-          <span className="flex items-center gap-3 px-6 py-3 bg-gray-900 rounded-full border border-gray-800 shadow-lg"><ShieldCheck className="w-5 h-5" /> Safe School</span>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-gray-500 font-bold uppercase tracking-widest text-[11px] mb-8">
+          <span className="flex items-center gap-2 px-4 py-2 bg-gray-900 rounded-full border border-gray-800 shadow-lg"><Monitor className="w-4 h-4" /> PC Optimized</span>
+          <span className="flex items-center gap-2 px-4 py-2 bg-gray-900 rounded-full border border-gray-800 shadow-lg"><Smartphone className="w-4 h-4" /> Cloud Hub</span>
+          <span className="flex items-center gap-2 px-4 py-2 bg-gray-900 rounded-full border border-gray-800 shadow-lg"><Globe className="w-4 h-4" /> Global Access</span>
         </div>
-        <p className="text-gray-500 max-w-4xl mx-auto text-xl font-bold tracking-tight opacity-80 leading-relaxed uppercase">
+        <p className="text-gray-500 max-w-4xl mx-auto text-lg font-bold tracking-tight opacity-70 leading-relaxed uppercase">
           The ultimate destination for professional-grade browser entertainment. Zero Installation. Zero Latency. Maximum Accessibility for 2026 school standards.
         </p>
       </div>
       
-      <AdBanner slotId="home-top-display" className="mb-20" />
+      <AdBanner slotId="home-top-node" className="mb-12" />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
         {filteredGames.map(game => <GameCard key={game.id} game={game} />)}
       </div>
 
-      {/* 500+ WORD ORIGINAL CONTENT SECTION (Boosting Site Value) */}
-      <div className="mt-40 p-16 bg-gray-900/30 rounded-[4rem] border border-gray-800 shadow-3xl text-center max-w-6xl mx-auto backdrop-blur-sm">
-        <h3 className="text-4xl font-black text-white mb-12 uppercase italic tracking-tighter">Why Choose No Download Unblocked Games 2026 School Chromebook Edition?</h3>
-        <div className="prose prose-invert prose-indigo mx-auto text-gray-500 font-bold leading-loose text-base text-justify md:text-center space-y-10 opacity-70">
+      <div className="mt-32 p-12 bg-gray-900/30 rounded-[3.5rem] border border-gray-800 shadow-3xl text-center max-w-6xl mx-auto backdrop-blur-sm">
+        <h3 className="text-3xl font-black text-white mb-8 uppercase italic tracking-tighter">Why Choose No Download Unblocked Games 2026 School Chromebook Edition?</h3>
+        <div className="prose prose-invert prose-indigo mx-auto text-gray-500 font-bold leading-loose text-base text-justify md:text-center space-y-8 opacity-80">
           <p>
-            In the rapidly evolving landscape of digital entertainment, the demand for <strong>no download unblocked games 2026 school chromebook</strong> solutions has reached an all-time high. Students and casual gamers alike are moving away from bulky, potentially harmful software installations in favor of high-performance, browser-based alternatives. Our platform is dedicated to bridging this gap by providing a curated selection of the most popular titles, all optimized for the unique hardware constraints of school-issued laptops and Chromebooks.
+            As technology advances, the demand for <strong>no download unblocked games 2026 school chromebook</strong> compatible sites has skyrocketed. We specialize in delivering high-fidelity gaming experiences that require zero local storage, making them perfect for devices with limited capacity or restricted administrative rights.
           </p>
           <p>
-            The technology behind <strong>no download unblocked games 2026 school chromebook</strong> experiences has advanced significantly. Using modern HTML5 engines and WebAssembly, we are able to deliver games that once required dedicated graphics cards directly through a standard web browser. This means that whether you are playing Subway Surfers or Geometry Dash, you are experiencing the game exactly as intended by the developers, with crisp visuals and responsive controls.
+            Our library is curated to ensure that every title—from fast-paced racing games like Moto X3M to rhythm-based challenges like Geometry Dash—runs at maximum frame rates. By utilizing advanced cloud-syncing and a lightweight frontend, we ensure that your gaming sessions are free from lag, allowing for total immersion even on basic school hardware.
           </p>
           <p>
-            Security is our top priority. By utilizing a "no download" approach, we eliminate the risks associated with downloading executable files from untrusted sources. This makes our site a safe haven for students looking for <strong>no download unblocked games 2026 school chromebook</strong> access. Every game in our library is pre-screened to ensure it doesn't contain tracking scripts or intrusive malware, providing peace of mind for both users and network administrators.
-          </p>
-          <p>
-            As we look towards 2026, we are also focusing on the educational benefits of these games. Many of our puzzle and strategy titles are excellent for developing hand-eye coordination, quick decision-making skills, and problem-solving abilities. Games like Basket Random or Moto X3M require a deep understanding of physics and timing, which can be a fun way to engage the brain during breaks.
-          </p>
-          <p>
-            Our commitment to the <strong>no download unblocked games 2026 school chromebook</strong> movement means constant updates. We are always on the lookout for the next big trend in browser gaming to ensure our users have the latest and greatest content at their fingertips. We optimize every new addition to ensure it maintains a "zero lag" status, even on older hardware. Bookmark our site today to stay connected to the premier source of unblocked content globally.
+            Safety and performance are our core values. Every game is hosted in a secure sandbox, ensuring your session remains private and protected. As we move closer to 2026, we are committed to updating our infrastructure to provide even more diverse and accessible content for students and workers globally. Bookmark <strong>nodownload2025.online</strong> to stay connected to the future of browser entertainment.
           </p>
         </div>
       </div>
 
-      <AdBanner slotId="home-bottom-node" className="mt-32" />
+      <AdBanner slotId="home-bottom-node" className="mt-24" />
     </div>
   );
 };
 
 const Footer: React.FC = () => (
-  <footer className="bg-gray-950 border-t border-gray-900 py-32 mt-40">
+  <footer className="bg-gray-950 border-t border-gray-900 py-24 mt-40">
     <div className="container mx-auto px-4 text-center">
-      <div className="flex flex-wrap justify-center gap-20 mb-20 text-[11px] font-black uppercase tracking-[0.5em] text-gray-600">
-        <Link to="/about" className="hover:text-indigo-400 transition-all hover:tracking-[0.8em]">Origins</Link>
-        <Link to="/privacy" className="hover:text-indigo-400 transition-all hover:tracking-[0.8em]">Ethics</Link>
-        <Link to="/contact" className="hover:text-indigo-400 transition-all hover:tracking-[0.8em]">Connect</Link>
+      <div className="flex flex-wrap justify-center gap-16 mb-16 text-[11px] font-black uppercase tracking-[0.4em] text-gray-600">
+        <Link to="/about" className="hover:text-indigo-400 transition-colors">Origins</Link>
+        <Link to="/privacy" className="hover:text-indigo-400 transition-colors">Ethics</Link>
+        <Link to="/contact" className="hover:text-indigo-400 transition-colors">Connect</Link>
       </div>
-      <div className="max-w-2xl mx-auto mb-20">
-         <p className="text-[10px] text-gray-800 uppercase tracking-widest leading-loose font-black italic border-y border-gray-900 py-12">
-           NODOWNLOAD2025.ONLINE - THE DEFINITIVE ARCADE STANDARD. ALL TRADEMARKS BELONG TO THEIR RESPECTIVE VISIONARIES. ZERO INSTALLATION. HIGH FIDELITY. GLOBAL ACCESS. NO DOWNLOAD UNBLOCKED GAMES 2026 SCHOOL CHROMEBOOK INFRASTRUCTURE.
+      <div className="max-w-xl mx-auto mb-16">
+         <p className="text-[10px] text-gray-800 uppercase tracking-widest leading-loose font-black italic border-y border-gray-900 py-10">
+           NODOWNLOAD2025.ONLINE - THE DEFINITIVE ARCADE STANDARD. ALL TRADEMARKS BELONG TO THEIR RESPECTIVE VISIONARIES. ZERO INSTALLATION. HIGH FIDELITY. GLOBAL ACCESS.
          </p>
       </div>
-      <p className="text-gray-900 text-[12px] font-black tracking-[1.5em] select-none opacity-20 uppercase">© 2025 UNBLOCKED GAMES ONLINE. NO DOWNLOAD REQUIRED.</p>
+      <p className="text-gray-900 text-[11px] uppercase font-black tracking-[1em] select-none opacity-20">© 2025 UNBLOCKED GAMES ONLINE. NO DOWNLOAD REQUIRED.</p>
     </div>
   </footer>
 );
@@ -465,14 +470,14 @@ const CookieConsent: React.FC = () => {
   };
   if (!show) return null;
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-indigo-950/95 backdrop-blur-3xl p-12 flex flex-col md:flex-row items-center justify-between z-[100] border-t border-indigo-500/20 gap-12 shadow-[0_-50px_100px_-20px_rgba(0,0,0,0.8)]">
-      <div className="flex items-center gap-10 text-center md:text-left">
-        <Cookie className="w-16 h-16 text-indigo-400 shrink-0 hidden md:block animate-pulse" />
-        <p className="text-xs text-indigo-100 font-black uppercase tracking-widest leading-loose max-w-3xl">
-          WE UTILIZE PERFORMANCE-TUNED COOKIES TO MAINTAIN OUR GLOBAL CLOUD INFRASTRUCTURE. BY INTERACTING WITH THIS PORTAL, YOU ACKNOWLEDGE OUR 2026 DATA ETHICS STANDARDS.
+    <div className="fixed bottom-0 left-0 w-full bg-indigo-950/95 backdrop-blur-3xl p-10 flex flex-col md:flex-row items-center justify-between z-[100] border-t border-indigo-500/20 gap-10 shadow-3xl">
+      <div className="flex items-center gap-8 text-center md:text-left">
+        <Cookie className="w-12 h-12 text-indigo-400 shrink-0 hidden md:block" />
+        <p className="text-xs text-indigo-100 font-black uppercase tracking-widest leading-loose max-w-2xl">
+          WE UTILIZE PERFORMANCE-FOCUSED COOKIES TO MAINTAIN OUR GLOBAL INFRASTRUCTURE. BY PLAYING, YOU ACKNOWLEDGE OUR 2026 DATA ETHICS STANDARDS.
         </p>
       </div>
-      <button onClick={accept} className="bg-white text-indigo-950 px-20 py-6 rounded-full text-[12px] font-black uppercase tracking-[0.4em] hover:bg-indigo-100 transition-all shadow-2xl active:scale-95 transform hover:scale-105">
+      <button onClick={accept} className="bg-white text-indigo-950 px-16 py-5 rounded-full text-[11px] font-black uppercase tracking-[0.3em] hover:bg-indigo-100 transition-all shadow-2xl active:scale-95 transform hover:scale-105">
         Accept & Sync
       </button>
     </div>
